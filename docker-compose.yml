@@ -1,0 +1,43 @@
+version: '3.9'
+
+volumes:
+  PGDATA: {}
+
+services:
+  sandbox-app:
+    depends_on:
+      - postgres-db
+    build: .
+    container_name: sandbox-app
+    image: sandbox-app
+    networks:
+      - sandbox-network
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_HOST: postgres-db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: sandboxdbdev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+  postgres-db:
+    image: postgres:13-alpine
+    container_name: postgres-db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 1s
+    networks:
+      - sandbox-network
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: sandboxdbdev
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: postgres
+    volumes:
+      - PGDATA:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  sandbox-network:
+    external: false

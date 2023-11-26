@@ -5,11 +5,11 @@ import com.application.sandbox.model.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import org.mapstruct.factory.Mappers;
+//import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface ICustomerMapper {
-    ICustomerMapper instance = Mappers.getMapper(ICustomerMapper.class);
+public interface CustomerMapper {
+//    CustomerMapper instance = Mappers.getMapper(CustomerMapper.class);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "customerName", target = "customerName")

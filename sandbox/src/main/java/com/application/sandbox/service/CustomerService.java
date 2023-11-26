@@ -1,7 +1,7 @@
 package com.application.sandbox.service;
 
 import com.application.sandbox.dto.CustomerDto;
-import com.application.sandbox.mapper.ICustomerMapper;
+import com.application.sandbox.mapper.CustomerMapper;
 import com.application.sandbox.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class CustomerService {
     @Autowired
-    ICustomerMapper customerMapper;
+    CustomerMapper customerMapper;
 
     @Autowired
     CustomerRepository customerRepository;
