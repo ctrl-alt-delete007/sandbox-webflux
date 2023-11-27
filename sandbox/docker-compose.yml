@@ -11,9 +11,9 @@ services:
     container_name: sandbox-app
     image: sandbox-app
     networks:
-      - sandbox-network
+      - kong-quickstart-net
     ports:
-      - "8080:8080"
+      - "80:8080"
     environment:
       POSTGRES_HOST: postgres-db
       POSTGRES_PORT: 5432
@@ -27,7 +27,7 @@ services:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 1s
     networks:
-      - sandbox-network
+      - kong-quickstart-net
     ports:
       - "5433:5432"
     environment:
@@ -39,5 +39,5 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 networks:
-  sandbox-network:
-    external: false
+  kong-quickstart-net:
+    external: true

@@ -13,7 +13,6 @@ ENV POSTGRES_PASSWORD $POSTGRES_PASSWORD
 
 WORKDIR /dist
 USER 1000
-VOLUME /tmp
-COPY /sandbox/target/sandbox-0.0.1-SNAPSHOT.jar /dist/app.jar
+COPY /build/*.jar ./app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar", "app.jar"]
